@@ -1,0 +1,21 @@
+To-Do-list:
+
+“beam_pattern.m” Line 9 column 72:
+Sound speed defined as 1524 m/s. Should use sound speed from ”toolbox_settings.m”
+
+Change the following:
+Make change to beampattern.m to accept sound speed as extra input argument, and to use default sound speed if this is not provided. Then make change in pistonfit.m and where appropriate, to insert sound speed when calling beampattern but maintain use of script as stand-alone script.
+
+Problem: On-axis click selection performed using peak-peak amplitude (more robust to surface reflections, etc) but piston fit uses RMS amplitude.
+
+Solution:
+
+localizeclick.m: Line 163 - calculate RMS amplitude instead of peak-peak amplitude
+
+extractclicks.m: Change RLpp to RLrms
+
+analyzeclick.m: Line 169 - use RMS amplitude
+
+compileclickparams.m: Line 65 - use RMS amplitude for on-axis click, check that highest rms amplitude is still within array (i.e. none of the extreme channels).
+
+analyzeclick_revision: Same changes
